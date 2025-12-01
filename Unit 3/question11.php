@@ -15,7 +15,7 @@ foreach ($items as $item) {
     $subtotal += $item['price'];
 }
 
-$vat = $subtotal * 0.13;
+$vat = $subtotal * 0.13;        
 $total = $subtotal + $vat;
 
 echo "-----------------------------------<br>";
