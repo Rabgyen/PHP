@@ -69,8 +69,6 @@ if ($isPosted) {
     ?>
     <br>
 
-
-
     <h3>Choose Crust Type:</h3>
     <select name="crust">
         <option value="">Select crust</option>

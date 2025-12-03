@@ -1,9 +1,7 @@
 <?php
-// Initialize variables
 $name = $rating = $comment = "";
 $submitted = false;
 
-// Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $submitted = true;
 
@@ -22,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <h1>Feedback Form</h1>
 
-<!-- Feedback Form -->
 <form method="post" action="">
     <label>Name:</label><br>
     <input type="text" name="name" value="<?= $name ?>" required><br><br>

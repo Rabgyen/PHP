@@ -1,5 +1,5 @@
 <?php
-// Include PHPMailer (update the path based on your project structure)
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,22 +13,18 @@ $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // Sanitize email
     $email = trim($_POST['email']);
 
-    // Validate email
     if (empty($email)) {
         $error = "Email is required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format.";
     }
 
-    // If no validation errors → send email
     if (empty($error)) {
         $mail = new PHPMailer(true);
 
         try {
-            // SMTP settings (Mailtrap)
             $mail->isSMTP();
             $mail->Host = "smtp.mailtrap.io";
             $mail->SMTPAuth = true;
@@ -37,11 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $mail->Port = 2525;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
-            // Sender & Recipient
             $mail->setFrom("newsletter@example.com", "Newsletter Service");
             $mail->addAddress($email);
 
-            // Email content
             $mail->isHTML(true);
             $mail->Subject = "Subscription Confirmation";
             $mail->Body = "
@@ -49,10 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <p>You will now receive updates from our newsletter.</p>
             ";
 
-            // Send mail
             $mail->send();
             $success = "Success! A confirmation email has been sent to $email.";
-            $email = ""; // Clear field after success
+            $email = ""; 
 
         } catch (Exception $e) {
             $error = "Mailer Error: " . $mail->ErrorInfo;
@@ -70,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <h2>Subscribe to our Newsletter</h2>
 
-<!-- Display messages -->
 <?php if ($error): ?>
     <p style="color:red;"><strong><?php echo $error; ?></strong></p>
 <?php endif; ?>
@@ -79,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <p style="color:green;"><strong><?php echo $success; ?></strong></p>
 <?php endif; ?>
 
-<!-- Subscription Form -->
 <form method="POST" action="">
     <label>Email:</label><br>
     <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
