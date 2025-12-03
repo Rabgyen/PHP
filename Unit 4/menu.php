@@ -1,6 +1,5 @@
 <?php
-// Detect which page is requested
-$page = $_GET['page'] ?? 'home';   // Default to "home"
+$page = $_GET['page'] ?? 'home';   
 
 function displayContent($page) {
     switch ($page) {
@@ -34,7 +33,6 @@ function displayContent($page) {
 
 <h1>My Website</h1>
 
-<!-- Navigation Menu -->
 <nav>
     <a href="menu.php?page=home">Home</a> |
     <a href="menu.php?page=about">About</a> |
@@ -43,7 +41,6 @@ function displayContent($page) {
 
 <hr>
 
-<!-- Dynamic Content Section -->
 <div>
     <?php displayContent($page); ?>
 </div>
