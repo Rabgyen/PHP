@@ -3,18 +3,18 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    // Hardcoded user credentials (for demo only)
+
     $users = [
         "admin" => ["password" => "admin123", "role" => "admin"],
         "student" => ["password" => "student123", "role" => "student"]
     ];
-    // Check if username exists and password matches
+
     if (isset($users[$username]) && $users[$username]["password"] === $password) {
-        // Store user details in session
+
         $_SESSION["username"] = $username;
         $_SESSION["role"] = $users[$username]["role"];
 
-        // Redirect based on role
+
         if ($_SESSION["role"] == "admin") {
             header("Location: admin.php");
         } else {
